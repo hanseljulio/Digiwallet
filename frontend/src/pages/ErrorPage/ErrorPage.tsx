@@ -4,7 +4,8 @@ function ErrorPage() {
       <h1 className="text-center py-[350px]">
         You are not allowed to access this page.
         <br />
-        <span>Get out of here.</span>
+        <span>Or the page is not found.</span>
+        <br />
       </h1>
     </div>
   );
