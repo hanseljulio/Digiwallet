@@ -14,7 +14,12 @@ function Topup() {
       </h1>
       <div className="topup-form">
         <form action="">
-          <Dropdown label="From" spacing="pb-[24px]" />
+          <Dropdown
+            label="From"
+            spacing="pb-[24px]"
+            options={["Bank Transfer", "Visa Card", "Cash"]}
+            labelStyle="pb-[16px] text-lg font-bold text-[#252B42]"
+          />
           <Input
             label="To"
             name="topup-to"

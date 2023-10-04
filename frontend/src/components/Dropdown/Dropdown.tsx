@@ -1,21 +1,21 @@
 interface DropdownProps {
   label: string;
-  spacing: string;
+  spacing?: string;
+  labelStyle: string;
+  options: string[];
 }
 
 function Dropdown(props: DropdownProps) {
   return (
     <div className={`dropdown-div ${props.spacing ? props.spacing : ""}`}>
-      <p className="pb-[16px] text-lg font-bold text-[#252B42]">
-        {props.label}
-      </p>
+      <p className={props.labelStyle}>{props.label}</p>
       <select
         className="p-4 bg-[#F1F1F1] w-full rounded"
         name="category-dropdown"
       >
-        <option value="Bank Transfer">Bank Transfer</option>
-        <option value="Visa Card">Visa Card</option>
-        <option value="Cash">Cash</option>
+        {props.options.map((option, index) => (
+          <option value={option}>{option}</option>
+        ))}
       </select>
     </div>
   );

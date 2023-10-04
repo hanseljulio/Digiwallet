@@ -2,13 +2,14 @@ import HomeSummary from "../../components/HomeSummary/HomeSummary";
 import UserNav from "../../components/UserNav/UserNav";
 import TableHead from "../../components/Table/TableHead";
 import TableData from "../../components/Table/TableData";
+import ShowSortSearch from "../../components/ShowSortSearch/ShowSortSearch";
 
 function Home() {
   return (
     <div className="home-div">
       <UserNav currentPage="home" />
       <HomeSummary name="Asep" accountNum="13099441122" money={1200000} />
-
+      <ShowSortSearch />
       <div className="table-section ml-[200px] mr-[305px]">
         <table className="table-area w-full">
           <TableHead />

@@ -1,0 +1,8 @@
+.search-input {
+  border: 1px solid #737373;
+  padding: 11px 149px 11px 60px;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg");
+  background-size: 13px;
+  background-repeat: no-repeat;
+  background-position: 20px center;
+}
