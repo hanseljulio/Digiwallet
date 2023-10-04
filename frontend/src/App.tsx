@@ -4,7 +4,6 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Transfer from "./pages/Transfer/Transfer";
 import Topup from "./pages/Topup/Topup";
-import Success from "./pages/Success/Success";
 import { Navigate, Outlet } from "react-router-dom";
 import { useStoreLoginPersist } from "./store/store";
 import Home from "./pages/Home/Home";

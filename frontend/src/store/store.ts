@@ -6,11 +6,6 @@ interface LoginState {
   setToken: (newToken: string) => void;
 }
 
-export const useStoreLogin = create<LoginState>((set) => ({
-  token: "",
-  setToken: (newToken) => set({ token: newToken }),
-}));
-
 export const useStoreLoginPersist = create<LoginState>()(
   devtools(
     persist(
