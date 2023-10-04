@@ -8,7 +8,7 @@ interface InputProps {
   placeholder?: string;
   width?: string;
   spacing?: string;
-  onChange?: any;
+  onChange?: (e: any) => void;
   value?: string;
   disabled?: boolean;
 }
@@ -30,6 +30,7 @@ function Input(props: InputProps) {
           name={props.name}
           placeholder={props.placeholder ? props.placeholder : ""}
           value={props.value}
+          onChange={props.onChange}
           disabled={props.disabled ? true : false}
         />
       </div>
