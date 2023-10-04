@@ -1,9 +1,16 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 function App() {
   return (
-    <div className="bg-slate-500">
-      <h1 className="text-primary underline font-extrabold">TEST</h1>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </div>
   );
 }
