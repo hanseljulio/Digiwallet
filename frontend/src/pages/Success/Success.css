@@ -1,0 +1,24 @@
+.wrapper {
+  margin: 0 auto;
+}
+
+.success-card-area {
+  margin: 0 auto;
+  border-radius: 15px;
+
+  box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.checkmark img {
+  margin: 0 auto;
+}
+
+.details p {
+  font-size: 18px;
+}
+
+.print-close-buttons .btn-div {
+  border: 1px solid #23a6f0;
+  padding: 10px 20px;
+  align-items: center;
+}
