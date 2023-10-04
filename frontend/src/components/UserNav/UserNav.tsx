@@ -4,7 +4,7 @@ interface HomeNavProps {
   currentPage?: string;
 }
 
-function HomeNav(props: HomeNavProps) {
+function UserNav(props: HomeNavProps) {
   return (
     <div className="user-nav-div">
       <div className="flex user-nav-wrapper mx-[200px] py-[18px] justify-between bg-transparent">
@@ -49,4 +49,4 @@ function HomeNav(props: HomeNavProps) {
   );
 }
 
-export default HomeNav;
+export default UserNav;
