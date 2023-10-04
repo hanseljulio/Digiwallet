@@ -27,7 +27,7 @@ function Login() {
       const response = await fetch(URL + LOGIN, loginData);
 
       if (!response.ok) {
-        throw new Error(response.statusText);
+        alert(`${response.statusText} - Incorrect email or password`);
       }
       const result = await response.json();
       console.log(result);
