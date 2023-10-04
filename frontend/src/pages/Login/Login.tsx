@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import LoginRegisterNav from "../../components/LoginRegisterNav/LoginRegisterNav";
 import LoginRegisterSideBar from "../../components/LoginRegisterSideBar/LoginRegisterSideBar";
 import { URL, HEADER, LOGIN } from "../../constants/constants";
+import { useNavigate } from "react-router-dom";
+import { useStoreLoginPersist } from "../../store/store";
 
 function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const navigate = useNavigate();
+
+  const stateLoginPersist = useStoreLoginPersist();
+
+  useEffect(() => {
+    stateLoginPersist.setToken("");
+  }, []);
 
   const submitTest = async (e: any) => {
     e.preventDefault();
@@ -30,7 +39,9 @@ function Login() {
         alert(`${response.statusText} - Incorrect email or password`);
       }
       const result = await response.json();
-      console.log(result);
+      const token = result.data.token;
+      stateLoginPersist.setToken(token);
+      navigate("/");
     } catch (e) {
       console.log(e);
     }
