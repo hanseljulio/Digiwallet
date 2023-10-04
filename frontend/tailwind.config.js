@@ -7,6 +7,7 @@ module.exports = {
         primary: "#23A6F0",
         primarytext: "#000000",
         secondarytext: "#737373",
+        tabletext: "#252B42",
       },
     },
   },

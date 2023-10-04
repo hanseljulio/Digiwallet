@@ -1,0 +1,9 @@
+.table-head-area,
+th,
+td {
+  border: 1px solid #ededed;
+}
+
+.table-area {
+  margin: 0 auto;
+}
