@@ -60,6 +60,11 @@ function Topup() {
   const submit = async (e: any) => {
     e.preventDefault();
 
+    if (amount < 50000 || amount > 10000000) {
+      alert("Top up must be between (including) 50.000 and 10.000.000");
+      return;
+    }
+
     const topUpData = {
       method: "POST",
       headers: {

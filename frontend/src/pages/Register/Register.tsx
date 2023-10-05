@@ -14,6 +14,12 @@ function Register() {
 
   const submitTest = async (e: any) => {
     e.preventDefault();
+
+    if (password.length < 8) {
+      alert("Password must have at least 8 characters");
+      return;
+    }
+
     const nameArray = name.split(" ");
 
     let firstName = "";
@@ -23,8 +29,12 @@ function Register() {
       firstName = nameArray[0];
     } else {
       lastName = nameArray[nameArray.length - 1];
-      firstName = nameArray[0];
+      for (let i = 0; i < nameArray.length - 1; i++) {
+        firstName += nameArray[i] + " ";
+      }
     }
+
+    firstName = firstName.trim();
 
     const registerData = {
       method: "POST",
@@ -68,6 +78,7 @@ function Register() {
             spacing="pb-[24px]"
             placeholder="Asep Budiantoro Chandradiman"
             onChange={(e) => setName(e.target.value)}
+            required={true}
           />
           <Input
             label="Email"
@@ -77,6 +88,7 @@ function Register() {
             spacing="pb-[24px]"
             placeholder="asep.bc@gmail.com"
             onChange={(e) => setEmail(e.target.value)}
+            required={true}
           />
           <Input
             label="Password"
@@ -86,6 +98,7 @@ function Register() {
             spacing="pb-[24px]"
             placeholder="*********"
             onChange={(e) => setPassword(e.target.value)}
+            required={true}
           />
           <Button
             text="Submit"

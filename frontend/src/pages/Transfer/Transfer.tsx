@@ -38,6 +38,16 @@ function Transfer() {
   const submitTest = async (e: any) => {
     e.preventDefault();
 
+    if (amount < 1000 || amount > 50000000) {
+      alert("Transfer must be between (including) 1.000 and 50.000.000");
+      return;
+    }
+
+    if (description.length > 35) {
+      alert("Maximum length for description is 35 characters");
+      return;
+    }
+
     const transferData = {
       method: "POST",
       headers: {

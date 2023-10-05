@@ -11,6 +11,7 @@ interface InputProps {
   onChange?: (e: any) => void;
   value?: string;
   disabled?: boolean;
+  required?: boolean;
 }
 
 function Input(props: InputProps) {
@@ -32,6 +33,7 @@ function Input(props: InputProps) {
           value={props.value}
           onChange={props.onChange}
           disabled={props.disabled ? true : false}
+          required={!props.required ? false : true}
         />
       </div>
     </div>
