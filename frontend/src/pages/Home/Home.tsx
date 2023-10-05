@@ -7,20 +7,37 @@ import { useState, useEffect } from "react";
 import { URL } from "../../constants/constants";
 import { useStoreLoginPersist } from "../../store/store";
 import { ITableData } from "../../interfaces/interfaces";
+import Pagination from "../../components/Pagination/Pagination";
 
 function Home() {
   const stateLoginPersist = useStoreLoginPersist();
   const [summaryData, setSummaryData] = useState<string[]>([]);
   const [tableData, setTableData] = useState<ITableData[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const filterData = (sortBy?: string, sortDir?: string, search?: string) => {
-    filterDataHelper(sortBy, sortDir, search);
+  // Start of pagination area
+
+  const moveNextPage = () => {
+    setCurrentPage(currentPage + 1);
+    filterData("", "", "", currentPage);
+  };
+
+  // End of pagination area
+
+  const filterData = (
+    sortBy?: string,
+    sortDir?: string,
+    search?: string,
+    page?: number
+  ) => {
+    filterDataHelper(sortBy, sortDir, search, page);
   };
 
   const filterDataHelper = async (
     sortBy?: string,
     sortDir?: string,
-    search?: string
+    search?: string,
+    page?: number
   ) => {
     if (!sortBy) {
       sortBy = "date";
@@ -38,7 +55,9 @@ function Home() {
 
     const filterURL =
       URL +
-      `/transactions?sortBy=${sortBy}&sortDir=${sortDir}&search=${search}`;
+      `/transactions?${
+        !page ? "" : `page=${currentPage}&`
+      }sortBy=${sortBy}&sortDir=${sortDir}&search=${search}`;
 
     try {
       const response = await fetch(filterURL, {
@@ -134,27 +153,11 @@ function Home() {
           })}
         </table>
       </div>
+      <div className="pagination-section ml-[200px] mr-[305px] pt-[100px] pb-[50px]">
+        <Pagination noOfItems={tableData.length} movePage={moveNextPage} />
+      </div>
     </div>
   );
-}
-
-{
-  /* <TableData
-index={1}
-dateTime="20:10 - 30 June 2022"
-type="DEBIT"
-fromTo="310001001"
-description="Fore Coffee"
-amount={75000}
-/>
-<TableData
-index={2}
-dateTime="20:10 - 30 June 2022"
-type="CREDIT"
-fromTo="310001001"
-description="Fore Coffee"
-amount={1000000}
-/> */
 }
 
 export default Home;

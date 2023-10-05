@@ -1,46 +1,42 @@
-# Getting Started with Create React App
+# React Assignment - DigiWallet
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React project which simulates a digital bank.
+
+Users can register, log in and do banking things like checking their transaction history, transfer money to another account, add money to their account, and play a game to earn prizes in the form of cash that will be added to their account.
+
+Users who did not log in will be unable to access the features of the bank.
 
 ## Available Scripts
 
-In the project directory, you can run:
+To set up the project:
 
-### `npm start`
+### Backend
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. If you are using Ubuntu: go to `cd backend/build/linux_intel` and run on the terminal `./http_server_linux_intel_v2`
+2. If you are using Mac: go to `cd backend/build/mac_m1` and run on the terminal `./http_server_mac_m1_v2`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Now open another terminal for the frontend.
 
-### `npm test`
+### Frontend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Back in the root folder, go to `cd frontend` and run `npm start`
 
-### `npm run build`
+The project should now have both its frontend and backend running.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Screenshots
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Login page](../screenshots/Screenshot%20from%202023-10-05%2016-52-34.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Register page](../screenshots/Screenshot%20from%202023-10-05%2016-53-09.png)
 
-### `npm run eject`
+![Home page](../screenshots/Screenshot%20from%202023-10-05%2016-53-36.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Transfer page](../screenshots/Screenshot%20from%202023-10-05%2016-53-43.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Topup page](../screenshots/Screenshot%20from%202023-10-05%2016-53-49.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Games page](../screenshots/Screenshot%20from%202023-10-05%2016-53-57.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![Games section](../screenshots/Screenshot%20from%202023-10-05%2016-54-10.png)
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Transfer modal](../screenshots/Screenshot%20from%202023-10-05%2016-56-52.png)

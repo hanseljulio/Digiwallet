@@ -9,7 +9,6 @@ import { useStoreLoginPersist } from "./store/store";
 import Home from "./pages/Home/Home";
 import Games from "./pages/Games/Games";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
-import Success from "./pages/Success/Success";
 
 function App() {
   const PrivateRoutes = () => {
@@ -27,19 +26,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/error" element={<ErrorPage />} />
-        <Route
-          path="/test"
-          element={
-            <Success
-              currentPage="home"
-              amount={10000}
-              from="1"
-              to="2"
-              description="Test"
-              exitFunction={() => {}}
-            />
-          }
-        />
 
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<Home />} />
