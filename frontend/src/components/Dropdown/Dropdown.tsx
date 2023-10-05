@@ -3,6 +3,8 @@ interface DropdownProps {
   spacing?: string;
   labelStyle: string;
   options: string[];
+  value?: string;
+  onChange?: (e: any) => void;
 }
 
 function Dropdown(props: DropdownProps) {
@@ -12,9 +14,10 @@ function Dropdown(props: DropdownProps) {
       <select
         className="p-4 bg-[#F1F1F1] w-full rounded"
         name="category-dropdown"
+        onChange={props.onChange}
       >
         {props.options.map((option, index) => (
-          <option value={option}>{option}</option>
+          <option value={props.value ? index + 1 : option}>{option}</option>
         ))}
       </select>
     </div>
