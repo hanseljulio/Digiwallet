@@ -1,24 +1,53 @@
 import React from "react";
-import PaginationButton from "../PaginationButtons/PaginationButton";
+import "./Pagination.css";
 
 interface PaginationProps {
-  noOfItems: number;
-  moveForward?: () => void;
-  moveBackward?: () => void;
-  movePage?: () => void;
+  page: number;
+  count: number;
+  size: number;
+  movePage: (page: number) => void;
 }
 
 function Pagination(props: PaginationProps) {
-  console.log(props.noOfItems);
+  const firstDisabled = props.page === 1;
+  const nextDisabled = props.page === Math.ceil(props.count / props.size);
+
+  const showButton =
+    props.page === 1
+      ? [1, 2, 3]
+      : props.page === Math.ceil(props.count / props.size)
+      ? [props.page - 2, props.page - 1, props.page]
+      : [props.page - 1, props.page, props.page + 1];
 
   return (
-    <div className="pagination-div">
-      <ul className="flex">
-        <PaginationButton page="First" customClass="rounded-l-lg" />
-        <PaginationButton page="1" />
-        <PaginationButton page="2" onClick={props.movePage} />
-        <PaginationButton page="Next" customClass="rounded-r-lg" />
-      </ul>
+    <div className="pagination-div flex">
+      <button
+        className="first-btn"
+        onClick={() => props.movePage(1)}
+        disabled={firstDisabled}
+      >
+        First
+      </button>
+      {showButton.map((pageNum) => (
+        <button
+          key={pageNum}
+          onClick={() => props.movePage(pageNum)}
+          className={`page-btn ${
+            pageNum === props.page
+              ? "bg-primary text-white"
+              : "bg-white text-primary"
+          }`}
+        >
+          {pageNum}
+        </button>
+      ))}
+      <button
+        className="next-btn"
+        onClick={() => props.movePage(props.page + 1)}
+        disabled={nextDisabled}
+      >
+        Next
+      </button>
     </div>
   );
 }

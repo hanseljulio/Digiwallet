@@ -17,9 +17,8 @@ function Home() {
 
   // Start of pagination area
 
-  const moveNextPage = () => {
-    setCurrentPage(currentPage + 1);
-    filterData("", "", "", currentPage);
+  const movePage = (pageNum: number) => {
+    setCurrentPage(pageNum);
   };
 
   // End of pagination area
@@ -154,7 +153,12 @@ function Home() {
         </table>
       </div>
       <div className="pagination-section ml-[200px] mr-[305px] pt-[100px] pb-[50px]">
-        <Pagination noOfItems={tableData.length} movePage={moveNextPage} />
+        <Pagination
+          page={currentPage}
+          count={tableData.length}
+          size={10}
+          movePage={movePage}
+        />
       </div>
     </div>
   );

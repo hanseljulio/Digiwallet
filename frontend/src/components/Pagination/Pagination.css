@@ -1,0 +1,19 @@
+.first-btn,
+.page-btn,
+.next-btn {
+  display: flex;
+  padding: 25px;
+  height: 43px;
+  border: 1px solid #f3f3f3;
+  align-items: center;
+}
+
+.first-btn {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.next-btn {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
