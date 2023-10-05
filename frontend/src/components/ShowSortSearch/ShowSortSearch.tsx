@@ -3,7 +3,9 @@ import Dropdown from "../Dropdown/Dropdown";
 import SortSearch from "./SortSearch";
 
 interface ShowSortSearchProps {
-  searchChange: (sortBy?: string, sortDir?: string, search?: string) => void;
+  updateSortBy: (newSortBy: string) => void;
+  updateSortDir: (newSortDir: string) => void;
+  updateSearch: (newSearch: string) => void;
 }
 
 function ShowSortSearch(props: ShowSortSearchProps) {
@@ -24,7 +26,11 @@ function ShowSortSearch(props: ShowSortSearchProps) {
         />
       </div>
       <div className="sort-search-section">
-        <SortSearch searchChange={props.searchChange} />
+        <SortSearch
+          updateSortBy={props.updateSortBy}
+          updateSortDir={props.updateSortDir}
+          updateSearch={props.updateSearch}
+        />
       </div>
     </div>
   );

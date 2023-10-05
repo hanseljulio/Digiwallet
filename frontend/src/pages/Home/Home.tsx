@@ -13,49 +13,42 @@ function Home() {
   const stateLoginPersist = useStoreLoginPersist();
   const [summaryData, setSummaryData] = useState<string[]>([]);
   const [tableData, setTableData] = useState<ITableData[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [count, setCount] = useState<number>(0);
+  const [size, setSize] = useState<number>(0);
+  const [sortBy, setSortBy] = useState<string>("date");
+  const [sortDir, setSortDir] = useState<string>("desc");
+  const [search, setSearch] = useState<string>("");
 
-  // Start of pagination area
+  const updateSortBy = (newSortBy: string) => {
+    setSortBy(newSortBy);
+  };
+
+  const updateSortDir = (newSortDir: string) => {
+    setSortDir(newSortDir);
+  };
+
+  const updateSearch = (newSearch: string) => {
+    setSearch(newSearch);
+  };
 
   const movePage = (pageNum: number) => {
     setCurrentPage(pageNum);
   };
 
-  // End of pagination area
-
-  const filterData = (
-    sortBy?: string,
-    sortDir?: string,
-    search?: string,
-    page?: number
+  const filterData = async (
+    page: number,
+    size: number,
+    sortBy: string,
+    sortDir: string,
+    search: string
   ) => {
-    filterDataHelper(sortBy, sortDir, search, page);
-  };
-
-  const filterDataHelper = async (
-    sortBy?: string,
-    sortDir?: string,
-    search?: string,
-    page?: number
-  ) => {
-    if (!sortBy) {
-      sortBy = "date";
-    }
-
-    if (!sortDir) {
-      sortDir = "desc";
-    }
-
-    if (!search) {
-      search = "";
-    } else {
-      search.replaceAll(" ", "%20");
-    }
+    search.replaceAll(" ", "%20");
 
     const filterURL =
       URL +
       `/transactions?${
-        !page ? "" : `page=${currentPage}&`
+        !page ? "" : `page=${currentPage}&size=${size}`
       }sortBy=${sortBy}&sortDir=${sortDir}&search=${search}`;
 
     try {
@@ -100,6 +93,9 @@ function Home() {
         },
       });
       const result = await response.json();
+      setCurrentPage(result.data.page);
+      setSize(result.data.size);
+      setCount(result.data.count);
       setTableData(result.data.data);
     } catch (e) {
       console.log(e);
@@ -109,7 +105,8 @@ function Home() {
   useEffect(() => {
     getUserData();
     getUserTransactions();
-  }, []);
+    filterData(currentPage, size, sortBy, sortDir, search);
+  }, [currentPage, size, sortBy, sortDir, search]);
 
   const dateConverter = (date: Date) => {
     const time = date.toTimeString().substring(0, 5);
@@ -127,7 +124,11 @@ function Home() {
         accountNum={summaryData[1]}
         money={parseInt(summaryData[2])}
       />
-      <ShowSortSearch searchChange={filterData} />
+      <ShowSortSearch
+        updateSortBy={updateSortBy}
+        updateSortDir={updateSortDir}
+        updateSearch={updateSearch}
+      />
       <div className="table-section ml-[200px] mr-[305px]">
         <table className="table-area w-full">
           <TableHead />
@@ -155,8 +156,8 @@ function Home() {
       <div className="pagination-section ml-[200px] mr-[305px] pt-[100px] pb-[50px]">
         <Pagination
           page={currentPage}
-          count={tableData.length}
-          size={10}
+          count={count}
+          size={size}
           movePage={movePage}
         />
       </div>
