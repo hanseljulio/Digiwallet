@@ -21,7 +21,9 @@ Now open another terminal for the frontend.
 
 ### Frontend
 
-Back in the root folder, go to `cd frontend` and run `npm start`
+Back in the root folder, go to `cd frontend` and run `npm install` to install dependencies.
+
+Now run `npm start`
 
 The project should now have both its frontend and backend running.
 
