@@ -44,7 +44,9 @@ function Pagination(props: PaginationProps) {
         </button>
       ))}
       <button
-        className="next-btn text-primary"
+        className={`next-btn text-primary ${
+          nextDisabled ? "bg-[#e6e6e6]" : ""
+        }`}
         onClick={() => props.movePage(props.page + 1)}
         disabled={nextDisabled}
       >

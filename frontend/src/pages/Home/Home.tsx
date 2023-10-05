@@ -59,6 +59,10 @@ function Home() {
         },
       });
       const result = await response.json();
+
+      setCount(result.data.count);
+      setCurrentPage(result.data.page);
+      setSize(result.data.size);
       setTableData(result.data.data);
     } catch (e) {
       console.log(e);
@@ -83,24 +87,6 @@ function Home() {
       console.log(e);
     }
   };
-
-  // const getUserTransactions = async () => {
-  //   try {
-  //     const response = await fetch(URL + "/transactions", {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: `Bearer ${stateLoginPersist.token}`,
-  //       },
-  //     });
-  //     const result = await response.json();
-  //     setCurrentPage(result.data.page);
-  //     setSize(result.data.size);
-  //     setCount(result.data.count);
-  //     setTableData(result.data.data);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
 
   useEffect(() => {
     getUserData();
