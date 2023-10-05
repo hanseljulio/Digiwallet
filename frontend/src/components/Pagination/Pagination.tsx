@@ -13,7 +13,13 @@ function Pagination(props: PaginationProps) {
   const nextDisabled = props.page === Math.ceil(props.count / props.size);
 
   const showButton =
-    props.page === 1
+    Math.ceil(props.count / props.size) === 1
+      ? [1]
+      : Math.ceil(props.count / props.size) === 2
+      ? [1, 2]
+      : Math.ceil(props.count / props.size) === 3
+      ? [1, 2, 3]
+      : props.page === 1
       ? [1, 2, 3]
       : props.page === Math.ceil(props.count / props.size)
       ? [props.page - 2, props.page - 1, props.page]

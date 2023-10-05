@@ -4,7 +4,7 @@ This is a React project which simulates a digital bank.
 
 Users can register, log in and do banking things like checking their transaction history, transfer money to another account, add money to their account, and play a game to earn prizes in the form of cash that will be added to their account.
 
-Users who did not log in will be unable to access the features of the bank.
+Users who did not log in will be unable to access the features of the bank and instead will be redirected to an error page.
 
 ## Available Scripts
 

@@ -1,5 +1,4 @@
 import "./ShowSortSearch.css";
-import { useState, useEffect } from "react";
 
 interface SortSearchProps {
   updateSortBy: (newSortBy: string) => void;
