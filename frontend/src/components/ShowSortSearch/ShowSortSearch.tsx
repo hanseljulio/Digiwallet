@@ -2,7 +2,11 @@ import React from "react";
 import Dropdown from "../Dropdown/Dropdown";
 import SortSearch from "./SortSearch";
 
-function ShowSortSearch() {
+interface ShowSortSearchProps {
+  searchChange: (sortBy?: string, sortDir?: string, search?: string) => void;
+}
+
+function ShowSortSearch(props: ShowSortSearchProps) {
   return (
     <div className="flex show-sort-search-div ml-[200px] mr-[305px] justify-between pt-[100px]">
       <div className="show-transaction">
@@ -20,7 +24,7 @@ function ShowSortSearch() {
         />
       </div>
       <div className="sort-search-section">
-        <SortSearch />
+        <SortSearch searchChange={props.searchChange} />
       </div>
     </div>
   );

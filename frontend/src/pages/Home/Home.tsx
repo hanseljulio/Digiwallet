@@ -34,7 +34,46 @@ function Home() {
   const [summaryData, setSummaryData] = useState<string[]>([]);
   const [tableData, setTableData] = useState<ITableData[]>([]);
 
-  console.log(tableData);
+  const filterData = (sortBy?: string, sortDir?: string, search?: string) => {
+    filterDataHelper(sortBy, sortDir, search);
+  };
+
+  const filterDataHelper = async (
+    sortBy?: string,
+    sortDir?: string,
+    search?: string
+  ) => {
+    if (!sortBy) {
+      sortBy = "date";
+    }
+
+    if (!sortDir) {
+      sortDir = "desc";
+    }
+
+    if (!search) {
+      search = "";
+    } else {
+      search.replaceAll(" ", "%20");
+    }
+
+    const filterURL =
+      URL +
+      `/transactions?sortBy=${sortBy}&sortDir=${sortDir}&search=${search}`;
+
+    try {
+      const response = await fetch(filterURL, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${stateLoginPersist.token}`,
+        },
+      });
+      const result = await response.json();
+      setTableData(result.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const getUserData = async () => {
     try {
@@ -91,7 +130,7 @@ function Home() {
         accountNum={summaryData[1]}
         money={parseInt(summaryData[2])}
       />
-      <ShowSortSearch />
+      <ShowSortSearch searchChange={filterData} />
       <div className="table-section ml-[200px] mr-[305px]">
         <table className="table-area w-full">
           <TableHead />
