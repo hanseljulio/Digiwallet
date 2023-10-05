@@ -23,13 +23,7 @@ function Register() {
       firstName = nameArray[0];
     } else {
       lastName = nameArray[nameArray.length - 1];
-      for (let i = 0; i < nameArray.length - 1; i++) {
-        firstName += nameArray[i];
-
-        if (i !== nameArray.length - 2) {
-          firstName += " ";
-        }
-      }
+      firstName = nameArray[0];
     }
 
     const registerData = {
