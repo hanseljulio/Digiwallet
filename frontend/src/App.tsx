@@ -7,6 +7,7 @@ import Topup from "./pages/Topup/Topup";
 import { Navigate, Outlet } from "react-router-dom";
 import { useStoreLoginPersist } from "./store/store";
 import Home from "./pages/Home/Home";
+import Games from "./pages/Games/Games";
 
 function App() {
   const PrivateRoutes = () => {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/transfer" element={<Transfer />} />
           <Route path="/topup" element={<Topup />} />
+          <Route path="/games" element={<Games />} />
         </Route>
       </Routes>
     </div>

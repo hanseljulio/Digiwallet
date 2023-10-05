@@ -1,9 +1,9 @@
 import React from "react";
 
 interface HomeSummaryProps {
-  name?: string;
-  accountNum?: string;
-  money?: number;
+  name: string;
+  accountNum: string;
+  money: number;
 }
 
 function HomeSummary(props: HomeSummaryProps) {
