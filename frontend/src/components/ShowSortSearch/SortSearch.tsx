@@ -7,7 +7,7 @@ interface SortSearchProps {
 
 function SortSearch(props: SortSearchProps) {
   const [sortBy, setSortBy] = useState<string>("date");
-  const [sortDir, setSortDir] = useState<string>("asc");
+  const [sortDir, setSortDir] = useState<string>("desc");
   const [search, setSearch] = useState<string>("");
 
   useEffect(() => {

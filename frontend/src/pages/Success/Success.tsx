@@ -9,6 +9,7 @@ interface SuccessProps {
   from?: string;
   to?: string;
   description?: string;
+  exitFunction: () => void;
 }
 
 const capitalize = (text: string) => {
@@ -18,7 +19,16 @@ const capitalize = (text: string) => {
 };
 
 function Success(props: SuccessProps) {
+  const currencyConverter = (money: number): string => {
+    return money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
+
+  const transactionId = Math.floor(
+    Math.random() * (999999999999999 - 10000000000000 + 1) + 10000000000000
+  ).toString();
+
   const capitalizedTitle = capitalize(props.currentPage);
+  const convertedAmount = currencyConverter(props.amount as number);
 
   return (
     <div className="flex success-div">
@@ -38,30 +48,28 @@ function Success(props: SuccessProps) {
             <div className="flex-col details justify-between mx-[40px]">
               <div className="flex justify-between amount-details pb-4">
                 <p>Amount</p>
-                <p>1.000.000</p>
+                <p>{convertedAmount}</p>
               </div>
               <div className="flex justify-between transaction-id-details pb-4">
                 <p>Transaction Id</p>
-                <p>338818239039011</p>
+                <p>{transactionId}</p>
               </div>
               <div className="flex justify-between from-details pb-4">
                 <p>From</p>
-                <p>11234001000</p>
+                <p>{props.from}</p>
               </div>
               <div className="flex justify-between to-details pb-4">
                 <p>To</p>
-                <p>1234005001</p>
+                <p>{props.to}</p>
               </div>
               <div className="flex justify-between description-details">
                 <p>Description</p>
-                <p className="w-[166px] text-right">
-                  Bayar hutang dan beli bakso
-                </p>
+                <p className="w-[166px] text-right">{props.description}</p>
               </div>
             </div>
             <div className="flex print-close-buttons justify-center gap-[30px] pt-[40px]">
               <Button text="Print" />
-              <Button text="Close" />
+              <Button text="Close" onClick={props.exitFunction} />
             </div>
           </div>
         </div>

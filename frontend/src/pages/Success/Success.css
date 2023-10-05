@@ -2,6 +2,11 @@
   margin: 0 auto;
 }
 
+.success-div {
+  background: rgba(217, 217, 217, 0.5);
+  padding-bottom: 55px;
+}
+
 .success-card-area {
   margin: 0 auto;
   border-radius: 15px;
