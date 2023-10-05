@@ -5,6 +5,7 @@ interface GameCardProps {
   money: number;
   chances: number;
   removeChance: () => void;
+  addMoney: (moneyToAdd: number) => void;
 }
 
 function GameCard(props: GameCardProps) {
@@ -22,10 +23,15 @@ function GameCard(props: GameCardProps) {
       setShowMoney(true);
       props.removeChance();
       setColor("bg-[#27AE60]");
+      props.addMoney(props.money);
     }
   };
 
-  // #EB5757
+  if (props.chances === 0) {
+    setTimeout(() => {
+      setShowMoney(false);
+    }, 3000);
+  }
 
   return (
     <div className="gamecard-div">
