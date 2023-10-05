@@ -13,7 +13,7 @@ function Home() {
   const stateLoginPersist = useStoreLoginPersist();
   const [summaryData, setSummaryData] = useState<string[]>([]);
   const [tableData, setTableData] = useState<ITableData[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [count, setCount] = useState<number>(0);
   const [size, setSize] = useState<number>(0);
   const [sortBy, setSortBy] = useState<string>("date");
@@ -49,7 +49,7 @@ function Home() {
       URL +
       `/transactions?${
         !page ? "" : `page=${currentPage}&size=${size}`
-      }sortBy=${sortBy}&sortDir=${sortDir}&search=${search}`;
+      }&sortBy=${sortBy}&sortDir=${sortDir}&search=${search}`;
 
     try {
       const response = await fetch(filterURL, {
@@ -84,29 +84,29 @@ function Home() {
     }
   };
 
-  const getUserTransactions = async () => {
-    try {
-      const response = await fetch(URL + "/transactions", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${stateLoginPersist.token}`,
-        },
-      });
-      const result = await response.json();
-      setCurrentPage(result.data.page);
-      setSize(result.data.size);
-      setCount(result.data.count);
-      setTableData(result.data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const getUserTransactions = async () => {
+  //   try {
+  //     const response = await fetch(URL + "/transactions", {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${stateLoginPersist.token}`,
+  //       },
+  //     });
+  //     const result = await response.json();
+  //     setCurrentPage(result.data.page);
+  //     setSize(result.data.size);
+  //     setCount(result.data.count);
+  //     setTableData(result.data.data);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   useEffect(() => {
     getUserData();
-    getUserTransactions();
+
     filterData(currentPage, size, sortBy, sortDir, search);
-  }, [currentPage, size, sortBy, sortDir, search]);
+  }, [currentPage, sortBy, sortDir, search]);
 
   const dateConverter = (date: Date) => {
     const time = date.toTimeString().substring(0, 5);

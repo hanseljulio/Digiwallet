@@ -6,6 +6,8 @@
   height: 43px;
   border: 1px solid #f3f3f3;
   align-items: center;
+  font-weight: 700;
+  font-size: 16px;
 }
 
 .first-btn {

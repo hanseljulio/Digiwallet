@@ -9,7 +9,7 @@ interface SortSearchProps {
 
 function SortSearch(props: SortSearchProps) {
   return (
-    <div className="flex gap-3 sort-search-div items-center">
+    <div className="flex gap-3 sort-search-div items-center text-[#737373]">
       <p className="text-[#737373] font-normal w-[70px]">Sort by</p>
       <div className="date-amount">
         <select
@@ -27,8 +27,8 @@ function SortSearch(props: SortSearchProps) {
           name="asc-desc-dropdown"
           onChange={(e) => props.updateSortDir(e.target.value)}
         >
-          <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
+          <option value="asc">Ascending</option>
         </select>
       </div>
       <div className="input-search">

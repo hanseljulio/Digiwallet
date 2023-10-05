@@ -22,7 +22,9 @@ function Pagination(props: PaginationProps) {
   return (
     <div className="pagination-div flex">
       <button
-        className="first-btn"
+        className={`first-btn text-primary ${
+          firstDisabled ? "bg-[#e6e6e6]" : ""
+        }`}
         onClick={() => props.movePage(1)}
         disabled={firstDisabled}
       >
@@ -42,7 +44,7 @@ function Pagination(props: PaginationProps) {
         </button>
       ))}
       <button
-        className="next-btn"
+        className="next-btn text-primary"
         onClick={() => props.movePage(props.page + 1)}
         disabled={nextDisabled}
       >
