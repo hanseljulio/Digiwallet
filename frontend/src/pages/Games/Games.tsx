@@ -10,6 +10,16 @@ function Games() {
   const stateLoginPersist = useStoreLoginPersist();
   const [summaryData, setSummaryData] = useState<string[]>([]);
   const [chance, setChance] = useState<number>(3);
+  const [moneyArray, setMoneyArray] = useState<number[]>([]);
+
+  const randomMoney = () => {
+    return Math.floor(Math.random() * (1000000 - 0 + 1) + 0);
+  };
+
+  const removeChance = () => {
+    setChance(chance - 1);
+  };
+
   const getUserData = async () => {
     try {
       const response = await fetch(URL + "/details", {
@@ -24,6 +34,13 @@ function Games() {
         result.data.id,
         result.data.wallet.balance,
       ]);
+
+      let randomMoneyArray = [];
+      for (let i = 0; i < 9; i++) {
+        let currentMoney = randomMoney();
+        randomMoneyArray.push(currentMoney);
+      }
+      setMoneyArray(randomMoneyArray);
     } catch (e) {
       console.log(e);
     }
@@ -49,15 +66,13 @@ function Games() {
         <p className="text-[18px] pb-[12px]">Chance: {chance}</p>
         <p className="text-[18px] underline pb-[50px]">Check Leaderboard</p>
         <div className="cards-section">
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
+          {moneyArray.map((money) => (
+            <GameCard
+              money={money}
+              chances={chance}
+              removeChance={removeChance}
+            />
+          ))}
         </div>
       </div>
     </div>
