@@ -11,7 +11,6 @@ import Home from "./pages/Home/Home";
 function App() {
   const PrivateRoutes = () => {
     const stateLoginPersist = useStoreLoginPersist();
-    console.log(stateLoginPersist);
     if (stateLoginPersist.token === "") {
       return <Navigate to="/login" replace />;
     }

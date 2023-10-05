@@ -7,34 +7,81 @@ import { useState, useEffect } from "react";
 import { URL } from "../../constants/constants";
 import { useStoreLoginPersist } from "../../store/store";
 
+interface ITableData {
+  amount: number;
+  created_at: string;
+  description: string;
+  id: number;
+  source_of_fund_id: number;
+  to_user: IToUserData;
+  to_wallet_id: number;
+  updated_at: number;
+  wallet_id: number;
+}
+
+interface IToUserData {
+  created_at: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  id: number;
+  updated_at: string;
+  wallet_id: number;
+}
+
 function Home() {
   const stateLoginPersist = useStoreLoginPersist();
   const [summaryData, setSummaryData] = useState<string[]>([]);
+  const [tableData, setTableData] = useState<ITableData[]>([]);
 
-  console.log(summaryData);
+  console.log(tableData);
+
+  const getUserData = async () => {
+    try {
+      const response = await fetch(URL + "/details", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${stateLoginPersist.token}`,
+        },
+      });
+      const result = await response.json();
+      setSummaryData([
+        result.data.first_name,
+        result.data.id,
+        result.data.wallet.balance,
+      ]);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getUserTransactions = async () => {
+    try {
+      const response = await fetch(URL + "/transactions", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${stateLoginPersist.token}`,
+        },
+      });
+      const result = await response.json();
+      setTableData(result.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const response = await fetch(URL + "/details", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${stateLoginPersist.token}`,
-          },
-        });
-        const result = await response.json();
-        setSummaryData([
-          result.data.first_name,
-          result.data.id,
-          result.data.wallet.balance,
-        ]);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
     getUserData();
+    getUserTransactions();
   }, []);
+
+  const dateConverter = (date: Date) => {
+    const time = date.toTimeString().substring(0, 5);
+
+    const modifiedDate = date.toUTCString().substring(4, 16);
+
+    return `${time} - ${modifiedDate}`;
+  };
 
   return (
     <div className="home-div">
@@ -48,26 +95,48 @@ function Home() {
       <div className="table-section ml-[200px] mr-[305px]">
         <table className="table-area w-full">
           <TableHead />
-          <TableData
-            index={1}
-            dateTime="20:10 - 30 June 2022"
-            type="DEBIT"
-            fromTo="310001001"
-            description="Fore Coffee"
-            amount={75000}
-          />
-          <TableData
-            index={2}
-            dateTime="20:10 - 30 June 2022"
-            type="CREDIT"
-            fromTo="310001001"
-            description="Fore Coffee"
-            amount={1000000}
-          />
+          {tableData.map((tdata, index) => {
+            const convertedDate = dateConverter(new Date(tdata.created_at));
+            const convertedType =
+              tdata.to_wallet_id === null ? "CREDIT" : "DEBIT";
+            const convertedFromTo =
+              tdata.source_of_fund_id !== null
+                ? tdata.source_of_fund_id
+                : tdata.to_wallet_id;
+            return (
+              <TableData
+                index={index + 1}
+                dateTime={convertedDate}
+                type={convertedType}
+                fromTo={convertedFromTo.toString()}
+                description={tdata.description}
+                amount={tdata.amount}
+              />
+            );
+          })}
         </table>
       </div>
     </div>
   );
+}
+
+{
+  /* <TableData
+index={1}
+dateTime="20:10 - 30 June 2022"
+type="DEBIT"
+fromTo="310001001"
+description="Fore Coffee"
+amount={75000}
+/>
+<TableData
+index={2}
+dateTime="20:10 - 30 June 2022"
+type="CREDIT"
+fromTo="310001001"
+description="Fore Coffee"
+amount={1000000}
+/> */
 }
 
 export default Home;
