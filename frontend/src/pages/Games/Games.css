@@ -1,0 +1,7 @@
+.cards-section {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 180px);
+  grid-template-rows: repeat(3, 180px);
+  justify-content: center;
+}
