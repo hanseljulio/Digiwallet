@@ -8,9 +8,11 @@ Users who did not log in will be unable to access the features of the bank and i
 
 ## Available Scripts
 
-To set up the project:
+To set up the project, you need to use both the frontend and backend:
 
 ### Backend
+
+Start from the root folder.
 
 1. If you are using Ubuntu: go to `cd backend/build/linux_intel` and run on the terminal `./http_server_linux_intel_v2`
 2. If you are using Mac: go to `cd backend/build/mac_m1` and run on the terminal `./http_server_mac_m1_v2`
