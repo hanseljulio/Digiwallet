@@ -22,6 +22,10 @@
   font-size: 18px;
 }
 
+.details .money-amount {
+  font-size: 30px;
+}
+
 .print-close-buttons .btn-div {
   border: 1px solid #23a6f0;
   padding: 10px 20px;

@@ -39,16 +39,16 @@ function Success(props: SuccessProps) {
         </h1>
         <div className="success-card-area">
           <div className="success-card w-[488px] h-[597px] bg-white">
-            <div className="checkmark pt-[50px] pb-[80px]">
+            <div className="checkmark pt-[50px] pb-[60px]">
               <img src={"./img/success.png"} className="pb-[30px]" alt="" />
               <h1 className="text-[#2DC071] text-3xl font-bold text-center">
                 {capitalizedTitle} Success
               </h1>
             </div>
             <div className="flex-col details justify-between mx-[40px]">
-              <div className="flex justify-between amount-details pb-4">
+              <div className="flex justify-between amount-details pb-4 items-center">
                 <p>Amount</p>
-                <p>{convertedAmount}</p>
+                <p className="money-amount font-bold">{convertedAmount}</p>
               </div>
               <div className="flex justify-between transaction-id-details pb-4">
                 <p>Transaction Id</p>
